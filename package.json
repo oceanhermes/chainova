@@ -1,19 +1,19 @@
 {
   "name": "chainova",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "private": true,
+  "type": "module",
+  "description": "AI developer copilot for the QIE Blockchain — grounded, read-only on-chain investigations.",
+  "engines": {
+    "node": ">=20"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
+  "scripts": {
+    "test": "node --test \"tests/**/*.test.mjs\"",
+    "verify:live": "node scripts/verify-live.mjs",
+    "serve": "node scripts/serve.mjs"
+  },
   "dependencies": {
-    "@types/node": "^26.6.5",
-    "tsx": "^4.23.15",
-    "typescript": "^7.0.2",
     "viem": "^2.57.8"
-  }
+  },
+  "license": "MIT"
 }
