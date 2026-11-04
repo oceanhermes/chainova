@@ -13,14 +13,21 @@ const EOA = '0x8a746E18B0a114cbbEb4B94BB356396e5Be17379';
 const ADDR2 = '0xd10cEC49175fAc24D493Df53f1B17ECF71D315eA';
 
 describe('tool registry', () => {
-  it('is a strict allowlist of exactly five tools', () => {
+  it('is a strict allowlist of read-only tools', () => {
     assert.deepEqual(listTools().sort(), [
       'getAddressCode',
       'getNativeBalance',
       'getTransaction',
       'getTransactionCount',
       'getTransactionReceipt',
+      'readContract',
     ]);
+  });
+
+  it('exposes no tool that can sign, send, or transfer', () => {
+    for (const name of listTools()) {
+      assert.doesNotMatch(name, /send|sign|write|transfer|deploy|approve|swap/i, `${name} looks mutating`);
+    }
   });
 
   it('rejects malformed arguments without a network round trip', async () => {
